@@ -1,0 +1,20 @@
+name: "Continuous Scripting"
+
+on:
+  push:
+    branches:
+    - main
+
+jobs: 
+  execute:
+    name: .NET
+    environment: Produção
+    runs-on: ubuntu-latest
+    steps: 
+    - uses: actions/checkout@v1
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+    - name: Execute Script
+      run: dotnet run --project PipelineScript/PipelineScript.csproj
